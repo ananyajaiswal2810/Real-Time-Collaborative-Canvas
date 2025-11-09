@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Real-Time Collaborative Canvas</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <h2>Room: default</h2>
+      <div id="user-controls">
+        <label>Display name: <input id="displayName" placeholder="Your name" /></label>
+        <label>Color: <input id="colorPicker" type="color" value="#000000" /></label>
+        <label>Width: <input id="widthRange" type="range" min="1" max="30" value="3" /></label>
+        <div class="buttons">
+          <button id="undoBtn">Undo</button>
+          <button id="redoBtn">Redo</button>
+          <button id="clearBtn">Clear (server)</button>
+        </div>
+      </div>
+      <div id="online">
+        <h3>Online</h3>
+        <ul id="usersList"></ul>
+      </div>
+    </aside>
+    <main id="main">
+      <div id="canvas-wrap">
+        <canvas id="canvas"></canvas>
+        <div id="cursors"></div>
+      </div>
+    </main>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/client.js"></script>
+</body>
+</html>
