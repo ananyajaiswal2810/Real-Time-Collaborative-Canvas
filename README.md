@@ -1,59 +1,53 @@
-YaataYaat 🚕
+Real-Time Collaborative Canvas
 
-A ride-booking web app UI with a complete end-to-end booking flow — search a ride, view a route map, review a matched driver, and complete checkout. Includes a manual dark mode toggle throughout.
+A multi-user collaborative drawing board built with Node.js, Express, and Socket.IO. Multiple users can draw on the same canvas simultaneously in real time — no account or setup required, just open and draw.
 
 Features
 
 
-Ride search — enter pickup and drop-off location to find available rides
-Route map — visual map view showing the route between pickup and destination
-Driver card — displays matched driver's name, star rating, and vehicle details before confirming
-Checkout flow — review ride summary and confirm booking
-Dark mode — manual toggle switches the entire UI between light and dark themes
+Freehand pen — draw freely with smooth stroke rendering
+Shapes — draw rectangles and circles with click-and-drag
+Eraser — erase parts of the canvas without clearing everything
+Colour picker — choose any stroke colour before drawing
+Clear canvas — wipe the board clean for all connected users instantly
+Real-time sync — all drawing actions broadcast instantly to every connected user via WebSockets
 
-
-Screens
-
-ScreenDescriptionLoginUser login page with light and dark variantsHomeRide search — enter pickup and drop locationMap viewRoute map between pickup and destinationReserveDriver card with name, rating, and vehicle infoCheckoutBooking summary and confirmation
 
 Tech Stack
 
-
-HTML5
-CSS3 (custom light/dark theming)
-Vanilla JavaScript
-
-
-
-This is a frontend prototype. There is no backend or live database — all interactions are UI-only.
-
-
+LayerTechnologyBackendNode.js, ExpressReal-time communicationSocket.IOFrontendHTML5 Canvas, CSS3, Vanilla JavaScript
 
 Getting Started
 
-No build step needed. Just open any .html file directly in your browser.
+Prerequisites
 
-bash git clone https://github.com/ananyajaiswal2810/yaatayaat.git
-cd yaatayaat
-open home.html    # or double-click in your file explorer
 
-To start from the login screen:
+Node.js (v18 or above)
 
-bashopen login.html
 
-Dark Mode
+Installation
 
-Each page has a manual toggle button that switches between light and dark themes. Dark variants are implemented as separate HTML files (login_dark.html, page_dark.html, reserve_dark.html, map_dark.html) for clean separation of styles.
+bashgit clone https://github.com/ananyajaiswal2810/Real-Time-Collaborative-Canvas.git
+cd Real-Time-Collaborative-Canvas
+npm install
+
+Run locally
+
+bashnpm start
+
+Open http://localhost:3000 in two or more browser tabs to see real-time collaboration in action.
+
+How It Works
+
+The server acts as a relay — when a user draws a stroke, the coordinates and tool state are emitted as a Socket.IO event to the server, which broadcasts them to all other connected clients. Each client re-renders the received stroke on their local canvas, keeping all views in sync.
 
 Project Structure
 
-├── login.html / login_dark.html       # Login screen
-├── home.html                          # Ride search
-├── page.html / page_dark.html         # Map + route view
-├── reserve.html / reserve_dark.html   # Driver card + ride details
-├── map.png / map_dark.png             # Route map assets
-├── cab-icon.png                       # UI assets
+├── server.js          # Express + Socket.IO server
+├── public/            # Static frontend (HTML, CSS, JS)
+│   └── index.html     # Canvas UI and client-side socket logic
+├── package.json
 
 Author
 
-Ananya Jaiswal — github.com/ananyajaiswal2810 
+Ananya Jaiswal 
